@@ -8,10 +8,10 @@ class AnswerButton extends StatelessWidget {
   });
 
   final String answerText;
-  final void Function()? onTap;
+  final void Function() onTap;
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(

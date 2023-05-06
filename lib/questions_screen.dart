@@ -5,17 +5,20 @@ import 'package:first_app/answer_button.dart';
 import 'package:first_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key, required this.onSelectAnswer});
+  const QuestionsScreen({
+    super.key,
+    required this.onSelectAnswer,
+  });
 
   final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() {
-    return _QuestionsScreen();
+    return _QuestionsScreenState();
   }
 }
 
-class _QuestionsScreen extends State<QuestionsScreen> {
+class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
   void answerQuestion(String selectedAnswer) {
@@ -23,7 +26,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
     // currentQuestionIndex = currentQuestionIndex + 1;
     // currentQuestionIndex += 1;
     setState(() {
-      currentQuestionIndex++; //increments the value by 1
+      currentQuestionIndex++; // increments the value by 1
     });
   }
 
@@ -42,25 +45,21 @@ class _QuestionsScreen extends State<QuestionsScreen> {
             Text(
               currentQuestion.text,
               style: GoogleFonts.lato(
-                  color: const Color.fromARGB(255, 201, 153, 251),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+                color: const Color.fromARGB(255, 201, 153, 251),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.center,
             ),
-            // const SizedBox(height: 30),
-            const SizedBox(
-              height: 30,
-            ),
-            ...currentQuestion.getShuffledAnswers().map(
-              (answer) {
-                return AnswerButton(
-                  answerText: answer,
-                  onTap: () {
-                    answerQuestion(answer);
-                  },
-                );
-              },
-            ),
+            const SizedBox(height: 30),
+            ...currentQuestion.getShuffledAnswers().map((answer) {
+              return AnswerButton(
+                answerText: answer,
+                onTap: () {
+                  answerQuestion(answer);
+                },
+              );
+            })
           ],
         ),
       ),
